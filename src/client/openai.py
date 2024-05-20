@@ -2,12 +2,13 @@ import os
 from openai import OpenAI
 from typing import List
 from src.utils.logger import logger
+from src.client.base import BaseClient
 from dotenv import load_dotenv
 
 load_dotenv()
 
 
-class OpenAIClient:
+class OpenAIClient(BaseClient):
 
     def __init__(
         self,
@@ -30,7 +31,7 @@ class OpenAIClient:
         Calls OpenAI to generate completions
 
         :param prompt: user prompt to LM
-        :param messages: 
+        :param messages: messages that user can define to help model interpret chat, defaults to None
         """
         try:
             # Build messages to pass for completion
